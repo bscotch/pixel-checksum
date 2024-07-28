@@ -1,6 +1,6 @@
 {
   "name": "@bscotch/pixel-checksum",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "license": "MIT",
   "author": "",
@@ -20,7 +20,6 @@
     "build": "cargo-cp-artifact -nc pixel-checksum.node -- cargo build --message-format=json-render-diagnostics",
     "build-debug": "npm run build --",
     "build-release": "npm run build -- --release",
-    "install": "npm run build-release",
     "test": "node index.test.js"
   },
   "devDependencies": {
