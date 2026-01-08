@@ -18,10 +18,10 @@ jobs:
     strategy:
       matrix:
         include:
-          # - os: ubuntu-latest
-          #   platform: linux
-          - os: windows-latest
-            platform: win32
+          - os: ubuntu-latest
+            platform: linux
+          # - os: windows-latest
+          #   platform: win32
           # - os: macos-latest
           #   platform: darwin
     steps:
@@ -32,10 +32,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "24"
-          cache: "pnpm"
 
-      - name: Enable corepack (pnpm)
-        run: corepack enable pnpm
+      - uses: pnpm/action-setup@v4
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -72,10 +70,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "24"
-          cache: "pnpm"
 
-      - name: Enable corepack (pnpm)
-        run: corepack enable pnpm
+      - uses: pnpm/action-setup@v4
 
       - name: Run tests
         run: pnpm test
