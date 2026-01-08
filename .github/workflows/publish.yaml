@@ -7,9 +7,11 @@
 name: Build & Publish
 
 on:
-  push:
-    branches: [develop]
   workflow_dispatch:
+
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
 
 jobs:
   build:
@@ -48,7 +50,7 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           if-no-files-found: "error"
-          name: pixel-checksum-${{ matrix.platform }}
+          name: pixel-checksum.${{ matrix.platform }}.node
           path: pixel-checksum.${{ matrix.platform }}.node
 
   publish:
@@ -61,22 +63,17 @@ jobs:
 
       - name: Download build artifacts
         uses: actions/download-artifact@v7
-        # with:
-        #   path: artifacts
-
-      - run: ls
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "24"
+          registry-url: "https://registry.npmjs.org"
 
       - uses: pnpm/action-setup@v4
 
-      - name: Run tests
+      - name: Avoid surprises
         run: pnpm test
 
       - name: Publish to registry
-        # env:
-        #   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: pnpm publish --access public

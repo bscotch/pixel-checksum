@@ -1,6 +1,6 @@
 {
   "name": "@bscotch/pixel-checksum",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Compute checksums of PNG images, based only on their pixel values.",
   "license": "MIT",
   "author": "",
