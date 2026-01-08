@@ -24,8 +24,8 @@ jobs:
             platform: linux
           - os: windows-latest
             platform: win32
-          # - os: macos-latest
-          #   platform: darwin
+          - os: macos-latest
+            platform: darwin
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -66,6 +66,9 @@ jobs:
 
       - name: List files
         run: ls -l
+
+      - name: List files
+        run: ls -l compiled-*/
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
