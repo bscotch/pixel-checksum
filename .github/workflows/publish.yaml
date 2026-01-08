@@ -50,7 +50,7 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           if-no-files-found: "error"
-          name: artifacts
+          name: compiled-${{matrix.platform}}
           path: pixel-checksum.${{ matrix.platform }}.node
 
   publish:
