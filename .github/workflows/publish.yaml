@@ -1,0 +1,86 @@
+# A GitHub workflow that:
+# - Runs on each of Linux, Windows, and MacOS
+# - On each platform, runs pnpm install & pnpm build. In each case that results in an output file named by platform: `pixel-checksum.${'linux'|'win32'|'darwin'}.node
+#   - Each of these is stored
+# - After all platform-specific builds are made, they are all collected in a final step for publishing as a package on Linux via `pnpm install && pnpm build && pnpm test && pnpm publish`
+
+name: Build & Publish
+
+on:
+  push:
+    branches: [develop]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build (${ { matrix.platform } })
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          # - os: ubuntu-latest
+          #   platform: linux
+          - os: windows-latest
+            platform: win32
+          # - os: macos-latest
+          #   platform: darwin
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "pnpm"
+
+      - name: Enable corepack (pnpm)
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build-release
+
+      - name: Test
+        run: pnpm test
+
+      - name: Upload platform artifact
+        uses: actions/upload-artifact@v6
+        with:
+          if-no-files-found: "error"
+          name: pixel-checksum-${{ matrix.platform }}
+          path: pixel-checksum.${{ matrix.platform }}.node
+
+  publish:
+    name: Publish package (linux)
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v7
+        # with:
+        #   path: artifacts
+
+      - run: ls
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "pnpm"
+
+      - name: Enable corepack (pnpm)
+        run: corepack enable
+
+      - name: Run tests
+        run: pnpm test
+
+      - name: Publish to registry
+        # env:
+        #   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: pnpm publish --access public

@@ -1,11 +1,10 @@
 {
-  "include": ["*.mjs", "*.js", "*.d.ts", "*.ts"],
+  "include": ["*.mjs", "*.js", "*.d.ts", "*.ts", "*.mts"],
   "compileOnSave": false,
   "compilerOptions": {
     "noEmit": true,
-    "lib": ["ESNext"],
-    "module": "ESNext",
-    "moduleResolution": "Node",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "strict": true,

@@ -1,30 +1,48 @@
-lockfileVersion: '6.0'
+lockfileVersion: '9.0'
 
 settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-devDependencies:
-  '@types/node':
-    specifier: 22.0.0
-    version: 22.0.0
-  cargo-cp-artifact:
-    specifier: ^0.1
-    version: 0.1.9
+importers:
+
+  .:
+    devDependencies:
+      '@types/node':
+        specifier: 25.0.3
+        version: 25.0.3
+      cargo-cp-artifact:
+        specifier: ^0.1
+        version: 0.1.9
+      zx:
+        specifier: 8.8.5
+        version: 8.8.5
 
 packages:
 
-  /@types/node@22.0.0:
-    resolution: {integrity: sha512-VT7KSYudcPOzP5Q0wfbowyNLaVR8QWUdw+088uFWwfvpY6uCWaXpqV6ieLAu9WBcnTa7H4Z5RLK8I5t2FuOcqw==}
-    dependencies:
-      undici-types: 6.11.1
-    dev: true
+  '@types/node@25.0.3':
+    resolution: {integrity: sha512-W609buLVRVmeW693xKfzHeIV6nJGGz98uCPfeXI1ELMLXVeKYZ9m15fAMSaUPBHYLGFsVRcMmSCksQOrZV9BYA==}
 
-  /cargo-cp-artifact@0.1.9:
+  cargo-cp-artifact@0.1.9:
     resolution: {integrity: sha512-6F+UYzTaGB+awsTXg0uSJA1/b/B3DDJzpKVRu0UmyI7DmNeaAl2RFHuTGIN6fEgpadRxoXGb7gbC1xo4C3IdyA==}
     hasBin: true
-    dev: true
 
-  /undici-types@6.11.1:
-    resolution: {integrity: sha512-mIDEX2ek50x0OlRgxryxsenE5XaQD4on5U2inY7RApK3SOJpofyw7uW2AyfMKkhAxXIceo2DeWGVGwyvng1GNQ==}
-    dev: true
+  undici-types@7.16.0:
+    resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
+
+  zx@8.8.5:
+    resolution: {integrity: sha512-SNgDF5L0gfN7FwVOdEFguY3orU5AkfFZm9B5YSHog/UDHv+lvmd82ZAsOenOkQixigwH2+yyH198AwNdKhj+RA==}
+    engines: {node: '>= 12.17.0'}
+    hasBin: true
+
+snapshots:
+
+  '@types/node@25.0.3':
+    dependencies:
+      undici-types: 7.16.0
+
+  cargo-cp-artifact@0.1.9: {}
+
+  undici-types@7.16.0: {}
+
+  zx@8.8.5: {}

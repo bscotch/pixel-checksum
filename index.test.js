@@ -1,9 +1,11 @@
 const test = require('node:test');
 const assert = require('node:assert');
+const os = require('node:os');
+const platform = os.platform();
 const {
   computePngChecksum,
   computePngChecksums,
-} = require('./pixel-checksum.node');
+} = require(`./pixel-checksum.${platform}.node`);
 
 test.describe('compute_pixels_checksum', () => {
   test.it('should return the checksum of the pixels', () => {
