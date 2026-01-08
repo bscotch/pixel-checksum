@@ -19,7 +19,6 @@
   "scripts": {
     "build": "node ./build.mts",
     "build-debug": "npm run build --",
-    "build-release": "npm run build -- --release",
     "test": "node index.test.js"
   },
   "devDependencies": {

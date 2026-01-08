@@ -8,10 +8,18 @@ exclude = ["pixel-checksum.node"]
 [lib]
 crate-type = ["cdylib"]
 
+[profile.release]
+opt-level = "z"   # optimize for size ("s" or "z")
+lto = true
+codegen-units = 1
+panic = "abort"
+debug = false
+strip = true
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-image = "0.24"
+image = { version = "0.24", default-features = false, features = ["png"] }
 rayon = "1.7"
 
 [dependencies.neon]
