@@ -50,8 +50,8 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           if-no-files-found: "error"
-          name: pixel-checksum.${{ matrix.platform }}.node
-          path: compiled
+          name: artifacts
+          path: pixel-checksum.${{ matrix.platform }}.node
 
   publish:
     name: Publish package (linux)
@@ -66,9 +66,8 @@ jobs:
 
       - name: List files
         run: ls -l
-
       - name: List files
-        run: ls -l compiled/
+        run: ls -l artifacts
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
