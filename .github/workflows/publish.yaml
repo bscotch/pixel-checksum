@@ -22,8 +22,8 @@ jobs:
         include:
           - os: ubuntu-latest
             platform: linux
-          # - os: windows-latest
-          #   platform: win32
+          - os: windows-latest
+            platform: win32
           # - os: macos-latest
           #   platform: darwin
     steps:
@@ -66,8 +66,6 @@ jobs:
 
       - name: List files
         run: ls -l
-      - name: List files
-        run: ls -l artifacts
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
