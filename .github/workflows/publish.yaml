@@ -87,5 +87,5 @@ jobs:
       - name: Avoid surprises
         run: pnpm test
 
-      # - name: Publish to registry
-      #   run: pnpm publish --access public
+      - name: Publish to registry
+        run: pnpm publish --access public
