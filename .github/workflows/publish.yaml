@@ -67,8 +67,14 @@ jobs:
       - name: List files
         run: ls -l
 
+      - name: Make executable
+        run: chmod +x compiled-*/*
+
+      - name: Move to root
+        run: mv compiled-*/* ./
+
       - name: List files
-        run: ls -l compiled-*/
+        run: ls -l
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
